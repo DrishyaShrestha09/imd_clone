@@ -7,7 +7,6 @@ const app = express();
 dbConnect();
 
 
-
 app.use(express.json());
 app.use(cors());
 
