@@ -11,7 +11,7 @@ router.get("/movies", async (req, res) => {
     let genre = req.query.genre || "All";
 
     const genreOptions = [
-      "Acton",
+      "Action",
       "Romance",
       "Fantasy",
       "Drama",
@@ -26,7 +26,7 @@ router.get("/movies", async (req, res) => {
     genre === "All"
       ? (genre = [...genreOptions])
       : (genre = req.query.genre.split(","));
-    req.query.sort ? (sort = req.sort.split(",")) : (sort = [sort]);
+    req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
 
     let sortBy = {};
     if (sort[1]) {
@@ -35,31 +35,30 @@ router.get("/movies", async (req, res) => {
       sortBy[sort[0]] = "asc";
     }
 
-    const movies = await Movie.find({name: {$regex: search, $options: "i"}})
-    .where("genere")
-    .in([...genre])
-    .sort(sortBy)
-    .skip(page * limit)
-    .limit(limit);
+    const movies = await Movie.find({ name: { $regex: search, $options: "i" } })
+      .where("genre")
+      .in([...genre])
+      .sort(sortBy)
+      .skip(page * limit)
+      .limit(limit);
 
     const total = await Movie.countDocuments({
-        genre: {$in:[...genre]},
-        name: {$regex: search, $options: "i"},
+      genre: { $in: [...genre] },
+      name: { $regex: search, $options: "i" },
     });
 
     const response = {
-        error: false,
-        total,
-        page:page + 1,
-        limit,
-        genres:genreOptions,
-        movies,
+      error: false,
+      total,
+      page: page + 1,
+      limit,
+      genres: genreOptions,
+      movies,
     };
 
     res.status(200).json(response);
-    
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 });
@@ -76,6 +75,5 @@ router.get("/movies", async (req, res) => {
 // insertMovies()
 //   .then((docs) => console.log(docs))
 //   .catch((err) => console.log(err))
-
 
 module.exports = router;
