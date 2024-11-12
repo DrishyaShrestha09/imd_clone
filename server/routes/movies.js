@@ -42,6 +42,7 @@ router.get("/movies", async (req, res) => {
     .in([...genre])
     .sort(sortBy)
     .skip(page * limit)
+    .limit(limit);
 
     const total = await Movie.countDocuments({
         genre: {$in:[...genre]},
@@ -70,13 +71,13 @@ const insertMovies = async () =>{
     const docs  = await Movie.insertMany(movies);
     return Promise.resolve(docs);
   } catch (err) {
-    return Proomise.reject(err)
+    return Promise.reject(err)
   }
-}
+};
 
 insertMovies()
 .then((docs) => console.log(docs))
-.catch((err) => console.log(err));
+.catch((err) => console.log(err))
 
 
 module.exports = router;
