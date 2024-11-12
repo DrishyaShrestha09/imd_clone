@@ -1,8 +1,6 @@
-//adding api for pagination, search results and filtering
-
 const router = require("express").Router();
 const Movie = require("../models/Movie");
-const  movies = require("../config/movies.json");
+const movies = require("../config/movies.json");
 
 router.get("/movies", async (req, res) => {
   try {
@@ -76,8 +74,8 @@ const insertMovies = async () =>{
 };
 
 insertMovies()
-.then((docs) => console.log(docs))
-.catch((err) => console.log(err))
+  .then((docs) => console.log(docs))
+  .catch((err) => console.log(err))
 
 
 module.exports = router;
