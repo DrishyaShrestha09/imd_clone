@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Search from "./components/search";
 import "./App.css";
 
 const base_url = process.env.REACT_APP_API_URL;
+
 function App() {
   const [obj, setObj] = useState({});
   const [sort, setSort] = useState({ sort: "rating", order: "desc" });
@@ -26,18 +28,18 @@ function App() {
 
   return (
     <div className="wrapper">
-    <div className="container">
-    <div className="head">
-      <img src="/images/logo.png" alt="logo" className="logo"/>
-    </div>
-    <div className="body">
-      <div className="table_container"></div>
-      <div className="filter_container"></div>
-    </div>
-    </div>
+      <div className="container">
+        <div className="head">
+          <img src="/images/logo.png" alt="logo" className="logo"/>
+          <Search setSearch={(search) => setSearch(search)}/>
+        </div>
+        <div className="body">
+          <div className="table_container"></div>
+          <div className="filter_container"></div>
+        </div>
+      </div>
     </div>
   );
-  
 }
 
 export default App;
