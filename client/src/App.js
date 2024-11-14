@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Search from "./components/search";
-import Table from "./components/table";
+import Search from "./components/Search";
+import Table from "./components/Table";
 import "./App.css";
 
 const base_url = process.env.REACT_APP_API_URL;
