@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 
 const Sort = ({ sort, setSort }) => {
   const onSelectChange = ({ currentTarget: input }) => {
-    setSort({ sort: input.value, order: sort.Order });
+    setSort({ sort: input.value, order: sort.order });
   };
 
   const onArrowChange = () => {
@@ -22,7 +22,7 @@ const Sort = ({ sort, setSort }) => {
         onChange={onSelectChange}
       >
         <option value="year">Year</option>
-        <option value="rating">rating</option>
+        <option value="rating">Rating</option>
       </select>
       <button className={styles.arrow_btn} onClick={onArrowChange}>
         <p className={styles.up_arrow}>&uarr;</p>
