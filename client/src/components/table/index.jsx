@@ -1,4 +1,4 @@
-import styles from "./styles.modules.css";
+import styles from "./styles.module.css";
 
 const Table = ({ movies }) => {
   return (
