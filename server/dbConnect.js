@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const dbConnect = () =>{
-    const connectionParams = {useNewUrlParser:true};
+    const connectionParams = {useUnifiedTopology:true};
     mongoose.connect(process.env.MONGODB_URI, connectionParams); // chaged URI to fix code error
     
     mongoose.connection.on('connected', () => {
