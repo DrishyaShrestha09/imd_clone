@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const dbConnect = () =>{
-    const connectionParams = {useUnifiedTopology:true};
-    mongoose.connect(process.env.MONGODB_URI, connectionParams); // chaged URI to fix code error
+    mongoose.set("useUnifiedTopology", true, "useNewUrlParser", true)
+    mongoose.connect(process.env.MONGODB_URI); // chaged URI to fix code error
     
     mongoose.connection.on('connected', () => {
         console.log('Connected to the database');
